@@ -6,6 +6,22 @@ interface User {
     lastName: string;
 }
 
+// interface Customer extends User {
+//     id: number;
+//     username: string;
+// }
+
+type UserType = {
+	name: string;
+	age: number;
+	email: string;
+};
+
+type UserCustomerType = UserType & {
+	id: number;
+	username: string;
+};
+
 const user1: User = {
     name: "Vincent",
     age: 33,
@@ -21,10 +37,9 @@ const user2: User = {
     lastName: "Zerbib"
 }
 
-interface Customer extends User {
-    id: number;
-    username: string;
-}
+const ListOfUsers: User[] = [user1, user2];
+const ListOfUserBis : Array<User> = [user1, user2];
+
 
 const UserCustomer: Customer = {
     id: 1,
@@ -69,10 +84,6 @@ enum CodeStatus {
     InternalServerError = 500
 }
 
-interface Response {
-    code : CodeStatus;
-}
-
 interface Slider {
     direction: Direction;
 }
@@ -87,12 +98,60 @@ function getUser(user: User) {
 	console.log(user.name);
 }
 
-function getUsers(users: User[]) {
+type userId = number | string;
+
+type args = userId | undefined;
+
+let DateOfBirth: Date = new Date();
+
+const myPromesse: Promise<string> = new Promise((resolve, reject) => { 
+    resolve("test");
+});
+
+const error : Error = new Error("test");
+
+function getUsers(users: userId[]) {
     users.forEach(user => {
-        console.log(user.name);
+        console.log("test");
     });
 }
 
-getUsers([user1, user2]);
+// getUsers([user1, user2]);
 
 getUsers([1, 3, 4, 5, 6, 7, 8, 9, 10]);
+getUsers(["1", "3", "4", "5", "6", "7", "8", "9", "10"]);
+getUsers(["1", "3", 4, "5", 6, "7", 8, "9", "10"]);
+
+
+interface Customer {
+    name: string;
+    age: number;
+    email: string;
+}
+
+const c1: Customer = { name: "Vincent", age: 33, email: "test@gmail.com'"}
+const c2: Customer = { name: "Vincent", age: 33, email: "test@gmail.com'"}
+
+interface ApiResponse<T> {
+    code: CodeStatus;
+    success: boolean;
+    data: T;
+}
+function getCustomers(): ApiResponse<Customer[]> { 
+    return {
+        code: CodeStatus.OK,
+        success: true,
+        data: [c1, c2]
+    }
+}
+
+function getProducts(): ApiResponse<Product[]> { 
+    return {
+        code: CodeStatus.OK,
+        success: true,
+        data: [{ name: "test", price: 10 }]
+    }
+}
+//getCustomers 
+//getProducts
+// getUsers

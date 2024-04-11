@@ -12,6 +12,8 @@ var user2 = {
     firstName: "Vincent",
     lastName: "Zerbib"
 };
+var ListOfUsers = [user1, user2];
+var ListOfUserBis = [user1, user2];
 var UserCustomer = {
     id: 1,
     name: "Vincent",
@@ -53,10 +55,36 @@ var CodeStatus;
 function getUser(user) {
     console.log(user.name);
 }
+var DateOfBirth = new Date();
+var myPromesse = new Promise(function (resolve, reject) {
+    resolve("test");
+});
+var error = new Error("test");
 function getUsers(users) {
     users.forEach(function (user) {
-        console.log(user.name);
+        console.log("test");
     });
 }
-getUsers([user1, user2]);
+// getUsers([user1, user2]);
 getUsers([1, 3, 4, 5, 6, 7, 8, 9, 10]);
+getUsers(["1", "3", "4", "5", "6", "7", "8", "9", "10"]);
+getUsers(["1", "3", 4, "5", 6, "7", 8, "9", "10"]);
+var c1 = { name: "Vincent", age: 33, email: "test@gmail.com'" };
+var c2 = { name: "Vincent", age: 33, email: "test@gmail.com'" };
+function getCustomers() {
+    return {
+        code: CodeStatus.OK,
+        success: true,
+        data: [c1, c2]
+    };
+}
+function getProducts() {
+    return {
+        code: CodeStatus.OK,
+        success: true,
+        data: [{ name: "test", price: 10 }]
+    };
+}
+//getCustomers 
+//getProducts
+// getUsers
